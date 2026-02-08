@@ -1,0 +1,13 @@
+spring:
+  ai:
+    # 阿里云百炼配置
+    dashscope:
+      app-id: fdd1ec89ff074a5a81a65288ea78ef40_p_efm  # 百炼应用ID，可通过环境变量配置
+      api-key: sk-0b2ae77b54df46139fc9d4a5701163c1  # 百炼API Key，可通过环境变量配置
+      workspace-id: ws-3ixnxz44v4mxem0l  # 业务空间ID，可选
+  
+  application:
+    name: agent-demo
+
+server:
+  port: 8080
