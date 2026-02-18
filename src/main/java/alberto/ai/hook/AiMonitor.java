@@ -1,4 +1,4 @@
-package alberto.ai.agent_demo;
+package alberto.ai.hook;
 
 import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationHandler;
