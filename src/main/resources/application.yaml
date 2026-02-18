@@ -5,9 +5,26 @@ spring:
       app-id: fdd1ec89ff074a5a81a65288ea78ef40_p_efm  # 百炼应用ID，可通过环境变量配置
       api-key: sk-0b2ae77b54df46139fc9d4a5701163c1  # 百炼API Key，可通过环境变量配置
       workspace-id: ws-3ixnxz44v4mxem0l  # 业务空间ID，可选
+    
+    # 启用聊天模型观察功能
+    chat:
+      observations:
+        include-error-logging: true
+        log-completion: true
+        log-prompt: true
   
   application:
     name: agent-demo
+  
+  # 启用 Actuator 端点
+  jmx:
+    enabled: true
 
 server:
   port: 8080
+
+# 启用详细的日志输出
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    io.micrometer: DEBUG
