@@ -4,7 +4,6 @@ import alberto.ai.memory.GraphChatClient;
 import com.alibaba.cloud.ai.graph.CompiledGraph;
 import com.alibaba.cloud.ai.graph.OverAllState;
 import com.alibaba.cloud.ai.graph.RunnableConfig;
-import com.alibaba.cloud.ai.graph.exception.GraphStateException;
 import com.alibaba.cloud.ai.graph.state.StateSnapshot;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -20,7 +19,7 @@ import java.util.Map;
  **/
 
 public class GraphChatClientRedisReadMemory {
-    public static void main(String[] args) throws GraphStateException {
+    public static void main(String[] args) {
         Config redisConfig = new Config();
         redisConfig.useSingleServer().setAddress("redis://localhost:6379");
         RedissonClient redisson = Redisson.create(redisConfig);
@@ -37,8 +36,16 @@ public class GraphChatClientRedisReadMemory {
 
         StateSnapshot state = graph.getState(config);
         System.out.println(state);
+        System.out.println("===========");
 
-        graph.invoke(Map.of("messages", List.of("我的名字是什么？")), config)
+
+        StateSnapshot checkPoint = stateHistory.stream().toList().get(1);
+        RunnableConfig checkoutPointConfig = RunnableConfig.builder()
+                .threadId("1")
+                .checkPointId(checkPoint.config().checkPointId().orElse(null))
+                .build();
+        // 从 checkpoint 开始执行
+        graph.invoke(Map.of(), checkoutPointConfig)
                 .map(OverAllState::data)
                 .map(data -> data.get("messages"))
                 .ifPresent(l -> {

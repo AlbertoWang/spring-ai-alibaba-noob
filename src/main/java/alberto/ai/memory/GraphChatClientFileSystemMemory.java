@@ -16,7 +16,7 @@ import java.util.Map;
  **/
 
 public class GraphChatClientFileSystemMemory {
-    public static void main(String[] args) throws GraphStateException {
+    public static void main(String[] args) {
         CompiledGraph graph = GraphChatClient.getFileSystemGraph("/Users/alberto/CodingSpace/IDEA-workspace/agent-memory");
 
         RunnableConfig config = RunnableConfig.builder()
