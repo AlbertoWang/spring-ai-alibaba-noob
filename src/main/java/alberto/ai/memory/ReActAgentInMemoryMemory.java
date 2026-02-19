@@ -10,6 +10,9 @@ import com.alibaba.cloud.ai.graph.exception.GraphRunnerException;
 import org.springframework.ai.chat.model.ChatModel;
 
 /**
+ * ReAct Agent 的 Memory，底层其实走的是内存 Memory，并且是一个默认配置
+ * @see com.alibaba.cloud.ai.graph.CompileConfig#saverConfig
+ *
  * @author albertowang@foxmail.com
  * @date 2026/2/18 19:52
  **/
