@@ -4,7 +4,6 @@ import alberto.ai.memory.GraphChatClient;
 import com.alibaba.cloud.ai.graph.CompiledGraph;
 import com.alibaba.cloud.ai.graph.OverAllState;
 import com.alibaba.cloud.ai.graph.RunnableConfig;
-import com.alibaba.cloud.ai.graph.exception.GraphStateException;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -23,7 +22,7 @@ import java.util.Map;
  **/
 
 public class GraphChatClientRedisWriteMemory {
-    public static void main(String[] args) throws GraphStateException {
+    public static void main(String[] args) {
         Config redisConfig = new Config();
         redisConfig.useSingleServer().setAddress("redis://localhost:6379");
         RedissonClient redisson = Redisson.create(redisConfig);
