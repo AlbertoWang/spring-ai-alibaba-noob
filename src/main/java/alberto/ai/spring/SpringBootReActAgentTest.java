@@ -1,17 +1,17 @@
-package alberto.ai.agent_demo;
+package alberto.ai.spring;
 
 import alberto.ai.tools.WeatherTool;
 import com.alibaba.cloud.ai.dashscope.api.DashScopeApi;
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
 import com.alibaba.cloud.ai.graph.agent.ReactAgent;
+import jakarta.annotation.Resource;
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.content.Content;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import reactor.core.publisher.Flux;
 
@@ -20,16 +20,15 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @author albertowang@foxmail.com
  * @date 2026/2/17 18:30
- * 
+ * <p>
  * 基于 Spring Boot 的 ReAct Agent 测试类
  * 这个版本会正确触发 AiMonitor 的观察处理器
  **/
 @SpringBootApplication
 @ComponentScan(basePackages = {"alberto.ai"})
 public class SpringBootReActAgentTest implements CommandLineRunner {
-
-    @Autowired
-    private ChatModel chatModel;
+    @Resource
+    private ChatModel myChatModel;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootReActAgentTest.class, args);
@@ -42,7 +41,7 @@ public class SpringBootReActAgentTest implements CommandLineRunner {
         // 创建 Agent
         ReactAgent agent = ReactAgent.builder()
                 .name("weather_agent_spring")
-                .model(chatModel)
+                .model(myChatModel)
                 .instruction("你是一个测试通用agent")
                 .tools(new WeatherTool())
                 .returnReasoningContents(true)
@@ -78,7 +77,7 @@ public class SpringBootReActAgentTest implements CommandLineRunner {
 
         // 等待流式调用完成
         latch.await();
-        
+
         // 优雅关闭
         System.exit(0);
     }

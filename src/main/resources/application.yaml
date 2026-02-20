@@ -1,0 +1,30 @@
+spring:
+  ai:
+    # 阿里云百炼配置
+    dashscope:
+      app-id: app-id  # 百炼应用ID，可通过环境变量配置
+      api-key: sk  # 百炼API Key，可通过环境变量配置
+      workspace-id: ws  # 业务空间ID，可选
+
+    # 启用聊天模型观察功能
+    chat:
+      observations:
+        include-error-logging: true
+        log-completion: true
+        log-prompt: true
+  
+  application:
+    name: agent-demo
+  
+  # 启用 Actuator 端点
+  jmx:
+    enabled: true
+
+server:
+  port: 8080
+
+# 启用详细的日志输出
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    io.micrometer: DEBUG

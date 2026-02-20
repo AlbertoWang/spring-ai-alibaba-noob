@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.content.Content;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +26,10 @@ public class ReactAgentStreamController {
 
     private static final Logger logger = LoggerFactory.getLogger(ReactAgentStreamController.class);
 
-    @Value("${spring.ai.dashscope.api-key}")
-    private String apiKey;
-
     private ReactAgent createReactAgent() {
         // 创建模型实例
         DashScopeApi dashScopeApi = DashScopeApi.builder()
-                .apiKey(apiKey)
+                .apiKey(System.getenv("DASH_SCOPE_API_KEY"))
                 .build();
 
         ChatModel chatModel = DashScopeChatModel.builder()
@@ -101,7 +97,7 @@ public class ReactAgentStreamController {
         try {
             // 创建支持思考过程的Agent
             DashScopeApi dashScopeApi = DashScopeApi.builder()
-                    .apiKey(apiKey)
+                    .apiKey(System.getenv("DASH_SCOPE_API_KEY"))
                     .build();
 
             ChatModel chatModel = DashScopeChatModel.builder()
