@@ -39,6 +39,12 @@
 			<version>${spring-ai-alibaba.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.alibaba.cloud.ai</groupId>
+			<artifactId>spring-ai-alibaba-starter-a2a-nacos</artifactId>
+			<version>${spring-ai-alibaba.version}</version>
+		</dependency>
+
 		<!-- Spring Boot Actuator for Observability -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,6 +62,11 @@
 			<groupId>org.redisson</groupId>
 			<artifactId>redisson</artifactId>
 			<version>3.22.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
 

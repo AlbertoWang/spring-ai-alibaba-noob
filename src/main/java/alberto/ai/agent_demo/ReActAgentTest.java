@@ -1,5 +1,6 @@
 package alberto.ai.agent_demo;
 
+import alberto.ai.tools.WeatherSchema;
 import alberto.ai.tools.WeatherTool;
 import com.alibaba.cloud.ai.dashscope.api.DashScopeApi;
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
@@ -46,6 +47,7 @@ public class ReActAgentTest {
                 .instruction("你是一个测试通用agent")
                 .tools(new WeatherTool())
                 .returnReasoningContents(true)
+                .outputType(WeatherSchema.class)
                 .build();
 
         System.out.println("===================同步调用===================");
